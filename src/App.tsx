@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { motion, useMotionValue } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 const Wrapper = styled.div`
@@ -30,22 +30,19 @@ const BiggerBox = styled.div`
   align-items: center;
 `;
 
-const boxVariants = {
-  hover: { rotateZ: 90 },
-  tap: { borderRadius: "100px" },
-};
-
 function App() {
   const x = useMotionValue(0);
+  const myScale = useTransform(x, [-800, 0, 800], [2, 1, 0.1]);
   useEffect(() => {
-    x.on("change", () => {
-      console.log(x.get());
+    myScale.on("change", () => {
+      // console.log(x.get());
+      console.log(myScale.get());
     });
   }, [x]);
   console.log(x);
   return (
     <Wrapper>
-      <Box style={{ x }} drag="x" dragSnapToOrigin />
+      <Box style={{ x, scale: myScale }} drag="x" dragSnapToOrigin />
     </Wrapper>
   );
 }
