@@ -2,7 +2,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { RecoilRoot } from "recoil";
-import { darkTheme } from "./theme.ts";
+import { theme } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -72,7 +72,7 @@ a {
 ReactDOM.createRoot(document.getElementById("root")!).render(
   // <React.StrictMode>
   <RecoilRoot>
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <App />
     </ThemeProvider>
